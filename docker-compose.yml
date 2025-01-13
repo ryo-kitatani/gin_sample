@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "53310:3306"
+    volumes:
+      - gin_data:/var/lib/mysql
+
+volumes:
+  gin_data:
