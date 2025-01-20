@@ -26,9 +26,7 @@ func NewTodoUsecase(repo repository.TodoRepository) TodoUseCase {
 
 // Create 新規作成
 func (tu *todoUseCase) Create(title string) error {
-	todo := &entity.Todo{
-		Title: title,
-	}
+	todo := entity.NewTodo(title)
 
 	if err := todo.Validate(); err != nil {
 		return err

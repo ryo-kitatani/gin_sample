@@ -2,6 +2,7 @@ package entity
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -11,6 +12,17 @@ type Todo struct {
 	Status    string    `json:"status" gorm:"type:enum('todo','doing','done');default:'todo'"`
 	CreatedAt time.Time `json:"created_at" gorm:"type:timestamp"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"type:timestamp"`
+}
+
+// NewTodo は新しいTodoエンティティを作成します
+func NewTodo(title string) *Todo {
+	now := time.Now()
+	return &Todo{
+		Title:     title,
+		Status:    "todo", // デフォルト値
+		CreatedAt: now,
+		UpdatedAt: now,
+	}
 }
 
 func (t *Todo) MarkAsDone() {
@@ -29,6 +41,8 @@ func (t *Todo) MarkAsTodo() {
 }
 
 func (t *Todo) Validate() error {
+	fmt.Println(t.Title)
+	fmt.Println(t.Status)
 	if t.Title == "" {
 		return errors.New("title is required")
 	}
