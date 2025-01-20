@@ -27,6 +27,11 @@
         └── todo.go
 ```
 
+DB作成
+```
+docker-compose up -d
+```
+
 起動
 ```
 go run cmd/main.go
